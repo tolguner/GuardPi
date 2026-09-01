@@ -1,0 +1,23 @@
+# GuardPi — systemd birimi (acilista otomatik baslatma)
+#
+# Kurulum:
+#   sudo cp deploy/guardpi.service /etc/systemd/system/
+#   sudo systemctl enable --now guardpi
+#
+# ONEMLI: Asagidaki User ve dizin yollarini kendi kurulumunuza gore duzenleyin.
+# Varsayilan degerler Raspberry Pi OS'un standart 'pi' kullanicisini ve
+# /home/pi/guardpi kurulum dizinini varsayar.
+
+[Unit]
+Description=GuardPi - Akilli Guvenlik Sistemi
+After=network.target
+
+[Service]
+User=pi
+WorkingDirectory=/home/pi/guardpi
+ExecStart=/home/pi/guardpi/venv/bin/python app.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

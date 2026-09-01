@@ -84,7 +84,7 @@ sensörlerin fiziksel detayını bilmez. Bu ayrım sayesinde eşikler ve pinler 
 | `config.py` | Pin tanımları, eşik değerleri, zamanlama ayarları |
 | `enroll_card.py` | Yetkili RFID kartı kaydetme aracı |
 | `test_donanim.py` | Donanım doğrulama betiği |
-| `smart-security.service` | systemd birimi (açılışta otomatik başlatma) |
+| `deploy/guardpi.service` | systemd birimi (açılışta otomatik başlatma) |
 
 ## Kurulum
 
@@ -111,9 +111,13 @@ Panel: `http://<pi-ip>:5000`
 **Açılışta otomatik başlatma:**
 
 ```bash
-sudo cp smart-security.service /etc/systemd/system/
-sudo systemctl enable --now smart-security
+sudo cp deploy/guardpi.service /etc/systemd/system/
+sudo systemctl enable --now guardpi
 ```
+
+> `deploy/guardpi.service` içindeki `User` ve dizin yolları Raspberry Pi OS'un
+> varsayılan `pi` kullanıcısını ve `/home/pi/guardpi` kurulum dizinini varsayar.
+> Kendi kullanıcı adına ve kurulum yerine göre düzenle.
 
 ## Ayarlanabilir eşikler
 
@@ -132,8 +136,8 @@ Tümü `config.py` içinde:
 ## Belgeler
 
 - **[KABLOLAMA.md](KABLOLAMA.md)** — pin pin fiziksel bağlantı rehberi
-- **[GuardPi_Rapor.docx](GuardPi_Rapor.docx)** — proje raporu
-- **[GuardPi Afiş.pdf](GuardPi%20Afi%C5%9F.pdf)** — proje afişi
+- **[docs/rapor.docx](docs/rapor.docx)** — proje raporu
+- **[docs/afis.pdf](docs/afis.pdf)** — proje afişi
 
 > Demo videosu (110 MB) GitHub'ın dosya boyutu sınırını aştığı için depoya dahil edilmemiştir.
 
