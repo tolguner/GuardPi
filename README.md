@@ -14,6 +14,8 @@ Hareket algılama · Yangın/gaz erken uyarı · RFID ile alarm susturma · Canl
 
 </div>
 
+![GuardPi kontrol paneli](docs/gorseller/01-panel.jpg)
+
 ---
 
 ## Ne yapıyor
@@ -32,6 +34,18 @@ hem fiziksel uyarıya (buzzer + LED) hem de bir web paneline yansıtır.
   Susturma sonrası 10 saniyelik yeniden kurulma gecikmesi vardır.
 - **Kayıt** — tüm olaylar (`motion`, `photo`, `silence`, `gas`, `rfid`, `system`) zaman
   damgasıyla SQLite'a yazılır; sensör geçmişi 30 saniyede bir loglanır.
+
+## Arayüz
+
+Panel, Raspberry Pi üzerinde çalışan Flask sunucusundan beslenir; sensör değerleri,
+canlı kamera akışı ve olay kayıtları tek ekranda toplanır.
+
+<table>
+<tr>
+<td width="50%"><img src="docs/gorseller/02-ayarlar.jpg" alt="Ayarlar"><br><sub><b>Eşikler arayüzden ayarlanır</b> — gaz onay/temizlenme sayısı ve alarm yeniden kurulma süresi anında uygulanır ve kalıcı kaydedilir.</sub></td>
+<td width="50%"><img src="docs/gorseller/03-galeri.jpg" alt="Görüntü galerisi"><br><sub><b>Olay kayıtları ve galeri</b> — her alarm anının klibi etiketiyle (alarm / manuel) saklanır; alarmı kimin susturduğu RFID kart sahibiyle birlikte loglanır.</sub></td>
+</tr>
+</table>
 
 ## Donanım
 
