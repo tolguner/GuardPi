@@ -54,7 +54,7 @@ try:
     # use_pulseio=False: libgpiod_pulsein helper surecini kullanmaz (saf Python
     # bit-bang). Bu sistemde pulseio yolu surekli OverflowError veriyordu;
     # bit-bang daha kararli ve GPIO4'u kilitleyen yardimci surec olmuyor.
-    _dht = adafruit_dht.DHT22(getattr(board, f"D{config.PIN_DHT11}"), use_pulseio=False)
+    _dht = adafruit_dht.DHT22(getattr(board, f"D{config.PIN_AM2301}"), use_pulseio=False)
 except Exception as e:
     print(f"[hardware] AM2301 baslatilamadi: {e}")
     _dht = None

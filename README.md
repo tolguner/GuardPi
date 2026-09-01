@@ -39,7 +39,7 @@ hem fiziksel uyarıya (buzzer + LED) hem de bir web paneline yansıtır.
 |---------|-------|----------|
 | Kart | Raspberry Pi 3B+ | — |
 | Hareket sensörü | HC-SR501 (PIR) | GPIO17 |
-| Sıcaklık/nem | DHT22 | GPIO4 |
+| Sıcaklık/nem | AM2301 (DHT22 protokolü) | GPIO4 |
 | Gaz sensörü | MQ-2 | GPIO23 (dijital çıkış) |
 | RFID okuyucu | MFRC522 | SPI (CE0) |
 | Kamera | Pi Camera | CSI |
@@ -52,7 +52,7 @@ Pin bağlantılarının tam şeması ve breadboard yerleşimi: **[KABLOLAMA.md](
 ```
                  ┌──────────────┐
    PIR ─────────►│              │
-   DHT22 ───────►│ hardware.py  │  donanım soyutlama katmanı
+   AM2301 ──────►│ hardware.py  │  donanım soyutlama katmanı
    MQ-2 ────────►│ (GPIO/SPI)   │  (tüm sensör ve çıkış erişimi burada)
    MFRC522 ─────►│              │
    Kamera ──────►└──────┬───────┘

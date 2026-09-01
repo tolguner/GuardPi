@@ -17,8 +17,8 @@
 
 Çıkış 3.3V seviyesindedir, direnç gerekmez. Modül üstündeki iki potansiyometre: hassasiyet ve gecikme — ikisini de saat yönünün tersine (minimuma) çevirerek başla.
 
-## 2. DHT22
-| DHT22 | Bağlantı |
+## 2. AM2301 (DHT22 protokolu)
+| AM2301 | Bağlantı |
 |---|---|
 | VCC (+) | 3.3V |
 | DATA | **GPIO4** (fiziksel 7) |

@@ -53,8 +53,8 @@ def test_pir():
 
 def test_sicaklik():
     import board, adafruit_dht, config
-    dht = adafruit_dht.DHT22(getattr(board, f"D{config.PIN_DHT11}"))
-    print(f"AM2301 (GPIO{config.PIN_DHT11}) okunuyor (birkac deneme)...")
+    dht = adafruit_dht.DHT22(getattr(board, f"D{config.PIN_AM2301}"))
+    print(f"AM2301 (GPIO{config.PIN_AM2301}) okunuyor (birkac deneme)...")
     for i in range(6):
         try:
             t = dht.temperature; h = dht.humidity

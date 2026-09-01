@@ -4,12 +4,12 @@
 PIN_PIR = 17        # HC-SR501 hareket sensoru
 PIN_BUZZER = 27     # Aktif buzzer
 PIN_LED = 22        # Kirmizi LED
-PIN_DHT11 = 4       # DHT11 sicaklik/nem (dijital, GPIO4)
+PIN_AM2301 = 4      # AM2301 sicaklik/nem (DHT22 protokolu, dijital, GPIO4)
 PIN_MQ2_DO = 23     # MQ-2 gaz sensoru dijital cikis (DO, GPIO23)
 
 # --- SPI cihazlari ---
 # RC522: SPI0, CS = CE0 (GPIO8), RST = GPIO25 (mfrc522 varsayilani).
-# (MCP3008 KULLANILMIYOR: DHT11 ve MQ-2 dijital oldugu icin ADC gerekmiyor.)
+# (MCP3008 KULLANILMIYOR: AM2301 ve MQ-2 dijital oldugu icin ADC gerekmiyor.)
 
 # --- MQ-2 dijital cikis ayari ---
 # Cogu MQ-2 modulunde gaz esigi asilinca DO pini LOW olur (active-low).
@@ -33,7 +33,7 @@ CLIP_SECONDS = 8            # klip suresi (saniye)
 CLIP_SIZE = (640, 480)      # klip cozunurlugu (lores YUV420 akisi; 64'un kati olmali)
 
 # --- Esik / okuma araliklari ---
-TEMP_READ_INTERVAL = 3.0  # saniye (DHT11 okuma araligi)
+TEMP_READ_INTERVAL = 3.0  # saniye (AM2301 okuma araligi)
 MQ2_READ_INTERVAL = 1.0
 RFID_POLL_INTERVAL = 0.3
 ALARM_REARM_DELAY = 10.0 # alarm susturulduktan sonra PIR'in tekrar tetikleyebilmesi icin bekleme
