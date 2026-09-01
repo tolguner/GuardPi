@@ -1,0 +1,24 @@
+# Buyuk medya — GitHub tek dosya siniri 100 MB; demo videosu depoya alinmaz
+*.mp4
+*.mov
+*.avi
+
+# Calisma zamani verisi
+security.db
+*.db-journal
+captures/
+clips/
+
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+*.egg-info/
+
+# OS / editor
+desktop.ini
+Thumbs.db
+.DS_Store
+.vscode/
+.idea/

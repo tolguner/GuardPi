@@ -1,0 +1,9 @@
+# GuardPi - Python bağımlılıkları (Raspberry Pi OS)
+# Not: picamera2, RPi.GPIO/lgpio ve spidev genellikle Raspberry Pi OS ile birlikte gelir.
+Flask
+gpiozero
+adafruit-circuitpython-dht
+mfrc522
+spidev
+RPi.GPIO
+picamera2
