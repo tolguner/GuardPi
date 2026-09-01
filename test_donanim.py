@@ -5,7 +5,7 @@ Kullanim:
     python test_donanim.py led       # LED 3 kez yakip sondurur
     python test_donanim.py buzzer    # Buzzer 2 kez kisa oter
     python test_donanim.py pir       # 15 sn hareket bekler
-    python test_donanim.py sicaklik  # LM35 sicaklik okur (MCP3008 CH1)
+    python test_donanim.py sicaklik  # AM2301 sicaklik/nem okur (GPIO4)
     python test_donanim.py gaz       # MQ-2 gaz seviyesi (5 okuma)
     python test_donanim.py rfid      # 15 sn kart bekler
     python test_donanim.py kamera    # Tek foto ceker

@@ -26,23 +26,29 @@
 
 DATA ile VCC arasına **10kΩ pull-up direnci** bağla (bazı modül kartlarında dahili vardır, çıplak sensörde şarttır).
 
-## 3. MCP3008 + MQ-2 (SPI, CS=CE1)
-MCP3008 çentiği sola bakacak şekilde (pin 1 sol üst):
+## 3. MQ-2 Gaz Sensörü (dijital DO)
 
-| MCP3008 pin | Bağlantı |
+| MQ-2 modülü | Bağlantı |
 |---|---|
-| 16 VDD | 3.3V |
-| 15 VREF | 3.3V |
-| 14 AGND | GND |
-| 13 CLK | **GPIO11 / SCLK** (fiziksel 23) |
-| 12 DOUT | **GPIO9 / MISO** (fiziksel 21) |
-| 11 DIN | **GPIO10 / MOSI** (fiziksel 19) |
-| 10 CS | **GPIO7 / CE1** (fiziksel 26) |
-| 9 DGND | GND |
-| 1 CH0 | MQ-2 **AO** çıkışı |
+| VCC | **5V** |
+| GND | GND |
+| **DO** (dijital çıkış) | **GPIO23** (fiziksel 16) |
+| AO (analog çıkış) | kullanılmıyor — boşta bırak |
 
-MQ-2 modülü: VCC → **5V**, GND → GND, **AO** → MCP3008 CH0. (DO çıkışı kullanılmıyor.)
-⚠️ MQ-2 ısıtıcısı ilk açılışta ~24 saat "yanma" (burn-in) ister; ilk gün değerler kayar, normaldir. AO çıkışı 5V'a kadar çıkabilir — VREF 3.3V olduğundan okuma 1.0'da doyar, sorun değil ama istersen AO'yu gerilim bölücüyle (örn. 2k2/3k3) düşürebilirsin.
+Modül üzerindeki potansiyometre eşiği belirler: gaz eşiği aştığında **DO LOW** olur
+(active-low). Bu davranış `config.MQ2_ACTIVE_LOW` ile değiştirilebilir.
+
+Yazılım tarafında ADC **kullanılmaz**; `hardware.py` DO pinini doğrudan
+`gpiozero.DigitalInputDevice` ile okur. Tek örneklik gürültünün alarm üretmemesi için
+üst üste `GAS_ON_COUNT` (3) pozitif okuma aranır, `GAS_OFF_COUNT` (6) normal okumada
+uyarı kalkar.
+
+⚠️ MQ-2 ısıtıcısı ilk açılışta ~24 saat "yanma" (burn-in) ister; ilk gün eşik kayabilir,
+bu normaldir. Potansiyometreyi burn-in sonrası ayarla.
+
+> **Not:** Projenin ilk tasarımında MQ-2'nin analog çıkışı (AO) bir MCP3008 ADC üzerinden
+> okunuyordu. Dijital DO çıkışı ihtiyacı karşıladığı için MCP3008 devreden çıkarıldı;
+> artık ne devrede ne de kodda yer alıyor.
 
 ## 4. RC522 RFID (SPI, CS=CE0)
 > Not: Projede "CS=GPIO25" yazmıştın — standart `mfrc522` kütüphanesinde **SDA(CS) → CE0 (GPIO8)** ve **RST → GPIO25** kullanılır. GPIO25 RST pinidir; bu rehber kütüphane varsayılanına göredir.
@@ -50,7 +56,7 @@ MQ-2 modülü: VCC → **5V**, GND → GND, **AO** → MCP3008 CH0. (DO çıkı�
 | RC522 | Bağlantı |
 |---|---|
 | SDA | **GPIO8 / CE0** (fiziksel 24) |
-| SCK | **GPIO11 / SCLK** (fiziksel 23) — MCP3008 ile ortak |
+| SCK | **GPIO11 / SCLK** (fiziksel 23) |
 | MOSI | **GPIO10 / MOSI** (fiziksel 19) — ortak |
 | MISO | **GPIO9 / MISO** (fiziksel 21) — ortak |
 | IRQ | boş |
@@ -58,7 +64,7 @@ MQ-2 modülü: VCC → **5V**, GND → GND, **AO** → MCP3008 CH0. (DO çıkı�
 | RST | **GPIO25** (fiziksel 22) |
 | 3.3V | **3.3V** (⚠️ asla 5V verme!) |
 
-SPI hattı (SCK/MOSI/MISO) iki cihaz arasında paylaşılır; yalnızca CS pinleri ayrıdır (RC522→CE0, MCP3008→CE1).
+RC522 tek SPI cihazıdır; CS olarak CE0 (GPIO8) kullanılır. SPI0 hattındaki CE1 (GPIO7) boştadır.
 
 ## 5. Buzzer (aktif) ve LED
 | Bileşen | Bağlantı |
