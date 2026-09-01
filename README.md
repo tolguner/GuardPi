@@ -158,3 +158,10 @@ Tümü `config.py` içinde:
 ## Proje bilgisi
 
 Işık Üniversitesi · Yönetim Bilişim Sistemleri · dönem projesi · 2026
+
+## Lisans
+
+Kaynak kod ve teknik dokümantasyon [MIT Lisansı](LICENSE) ile yayımlanmıştır.
+
+Proje raporu (`docs/rapor.docx`) ve afiş (`docs/afis.pdf`) bu lisansın kapsamı
+dışındadır; bu akademik çalışmaların tüm hakları saklıdır.
